@@ -1,4 +1,7 @@
 import { useAccount, useConnect, useConnectors, useDisconnect } from "wagmi";
+import { Stake } from "./Stake";
+import { TotalBalance } from "./Balance";
+
 
 export function Appbar(){
     const connectors=useConnectors()
@@ -11,14 +14,21 @@ export function Appbar(){
             <button onClick={()=>disconnect()}>
                 Disconect
             </button>
+           <Stake />
+
+            <TotalBalance />
+
+           
         </div>
     }
 
     return <div>
-        {connectors.map(c=> <button onClick={()=>{
+        {
+        connectors.map(c=> <button key={c.id} onClick={()=>{
             connect({connector:c})
         }}>
             Connect via {c.name}
-        </button>)}
+        </button>)
+        }
     </div>
 }
