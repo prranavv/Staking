@@ -1,7 +1,7 @@
-import { useAccount, useConnect, useConnectors, useDisconnect } from "wagmi";
+import { useAccount, useConnect, useConnectors, useDisconnect,useReadContract } from "wagmi";
 import { Stake } from "./Stake";
 import { TotalBalance } from "./Balance";
-
+import { Unstake } from "./Unstake";
 
 export function Appbar(){
     const connectors=useConnectors()
@@ -15,8 +15,9 @@ export function Appbar(){
                 Disconect
             </button>
            <Stake />
-
-            <TotalBalance />
+            <Unstake />           
+           <TotalBalance />
+            
 
            
         </div>

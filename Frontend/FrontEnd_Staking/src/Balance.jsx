@@ -1,17 +1,26 @@
-import { useAccount, useReadContract } from "wagmi";
+import { useReadContract } from "wagmi";
 import { abi } from "./abi";
-import { anvil } from "wagmi/chains";
+import { useState } from "react";
 
 export function TotalBalance(){
-    //const {address} = useAccount()
+    const [enabled,setEnabled] = useState(false)
     const {data,isLoading,error}=useReadContract({
         abi:abi,
         address:"0x610178dA211FEF7D417bC0e6FeD39F05609AD788",
         functionName:'total',
-        // account:address,
-        chainId:anvil.id,
+        
     })
     console.log(data,error)
+
+    return (
+        <>
+            {/* <button onClick={()=>{setEnabled(!enabled)}} disabled={isLoading}>
+                Total Staked
+            </button>
+            {} */}
+            {data?.toString()}
+        </>
+    )
     if(isLoading){
         return <div>Loading...</div>
       }
